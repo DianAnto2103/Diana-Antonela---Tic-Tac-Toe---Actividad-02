@@ -63,6 +63,17 @@ def result(board, action):
     Returns the board that results from making move (i, j) on the board.
     """
 
+    if action not in actions(board):
+        raise Exception("La acción no se encuentra disponible.")
+    
+    copia_profunda = copy.deepcopy(board)
+
+    fila,columna = action 
+
+    copia_profunda[fila][columna] = player(copia_profunda)
+
+    return copia_profunda
+
     raise NotImplementedError
 
 
