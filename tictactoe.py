@@ -23,7 +23,21 @@ def player(board):
     """
     Returns player who has the next turn on a board.
     """
+    conteo_x = 0
+    conteo_o = 0
 
+    for i in range(3):
+        for j in range(3): 
+            if board[i][j] == X:
+                conteo_x+=1
+            elif board[i][j] == O:
+                conteo_o+=1
+
+    if(conteo_x == conteo_o):
+        return X
+    else:
+        return O
+    
     raise NotImplementedError
 
 
