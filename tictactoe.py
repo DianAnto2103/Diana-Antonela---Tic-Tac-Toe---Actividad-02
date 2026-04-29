@@ -81,7 +81,56 @@ def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
+    #Filas
+    for i in range(3): #1
+        conteo_x = 0
+        conteo_o = 0
+        for j in range(3): #2
+            if(board[i][j] == X):
+                conteo_x +=1
+                if(conteo_x == 3):
+                    return X
+            elif(board[i][j] == O):
+                conteo_o +=1
+                if(conteo_o == 3):
+                    return O
 
+    #Columnas
+    for i in range(3): #1
+        conteo_x = 0
+        conteo_o = 0
+        for j in range(3): #2
+            if(board[j][i] == X):
+                conteo_x +=1
+                if(conteo_x == 3):
+                    return X
+            elif(board[j][i] == O):
+                conteo_o +=1
+                if(conteo_o == 3):
+                    return O
+
+    #Diagonal principal
+    conteo_x = 0
+    conteo_o = 0
+    for i in range(3):
+        if(board[i][i] == X):
+            conteo_x += 1
+            if(conteo_x == 3): 
+                return X
+        elif(board[i][i] == O):
+            conteo_o += 1
+            if(conteo_o == 3):
+                return O
+
+    #Diagonal invertida
+    if(board[0][2] == X and board[1][1] == X and board[2][0] == X):
+        return X
+    if(board[0][2] == O and board[1][1] == O and board[2][0] == O):
+        return O
+
+    return None
+
+    
     raise NotImplementedError
 
 
