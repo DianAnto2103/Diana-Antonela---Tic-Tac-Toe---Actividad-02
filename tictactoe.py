@@ -159,8 +159,42 @@ def utility(board):
         return 0
     raise NotImplementedError
 
+def max_value(board):
+    if terminal(board):
+        return utility(board)
+    valor = -math.inf
+    for action in actions(board):
+        valor = max(valor, min_value(result(board, action)))
+    return valor
+
+def min_value(board):
+    if terminal(board):
+        return utility(board)
+    valor = math.inf
+    for action in actions(board):
+        valor = min(valor, max_value(result(board, action)))
+    return valor
+
 def minimax(board):
-    """
-    Returns the optimal action for the current player on the board.
-    """
-    raise NotImplementedError
+    if terminal(board):
+        return None
+    
+    if player(board) == X:
+        mejor_valor = -math.inf
+        mejor_accion = None
+        for action in actions(board):
+            valor_actual = min_value(result(board, action))
+            if valor_actual > mejor_valor:
+                mejor_valor = valor_actual
+                mejor_accion = action
+        return mejor_accion
+    
+    else:  
+        mejor_valor = math.inf
+        mejor_accion = None
+        for action in actions(board):
+            valor_actual = max_value(result(board, action))
+            if valor_actual < mejor_valor:
+                mejor_valor = valor_actual
+                mejor_accion = action
+        return mejor_accion
