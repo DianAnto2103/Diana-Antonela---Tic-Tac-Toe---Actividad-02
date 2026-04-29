@@ -140,7 +140,7 @@ def terminal(board):
     """
     if(winner(board) != None):
         return True
-    if(actions(board) == 0):
+    if(not actions(board)):
         return True
     
     return False 
